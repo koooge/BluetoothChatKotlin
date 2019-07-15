@@ -86,12 +86,12 @@ class BluetoothChatFragment : Fragment() {
 
         mConversationArrayAdapter = ArrayAdapter<String>(getActivity(), R.layout.message)
 
-        mConversationView?.setAdapter(mConversationArrayAdapter)
+        mConversationView!!.setAdapter(mConversationArrayAdapter)
 
-        mOutEditText?.setOnEditorActionListener(mWriteListener)
+        mOutEditText!!.setOnEditorActionListener(mWriteListener)
 
-        mSendButton?.setOnClickListener(View.OnClickListener() {
-            fun onClick(v: View) {
+        mSendButton!!.setOnClickListener(object: View.OnClickListener {
+            override fun onClick(v: View) {
                 val view: View? = getView()
                 if (null != view) {
                     val textView: TextView = view.findViewById(R.id.edit_text_out)
@@ -121,11 +121,12 @@ class BluetoothChatFragment : Fragment() {
         }
 
         if (message.length > 0) {
+            Log.i(TAG, "message")
             val send: ByteArray = message.toByteArray()
-            mChatService?.write(send)
+            mChatService!!.write(send)
 
-            mOutStringBuffer?.setLength(0)
-            mOutEditText?.setText(mOutStringBuffer)
+            mOutStringBuffer!!.setLength(0)
+            mOutEditText!!.setText(mOutStringBuffer)
         }
     }
 

@@ -135,6 +135,7 @@ class BluetoothChatService(context: Context, handler: Handler) {
             if (mState != STATE_CONNECTED) return
             r = mConnectedThread
         }
+        r!!.write(out)
     }
 
     private fun connectionFailed() {
