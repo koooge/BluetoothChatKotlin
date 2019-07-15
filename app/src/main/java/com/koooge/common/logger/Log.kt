@@ -18,7 +18,15 @@ class Log {
 
         fun println(priority: Int, tag: String, msg: String?, tr: Throwable?) {
             val mMsg = if (msg == null) "" else msg
-            mLogNode?.println(priority, tag, mMsg, tr)
+            if (mLogNode != null) {
+                mLogNode!!.println(priority, tag, mMsg, tr)
+            } else {
+                System.out.println(tag + ": " + mMsg)
+            }
+        }
+
+        fun println(priority: Int, tag: String, msg: String?) {
+            println(priority, tag, msg, null)
         }
 
         fun v(tag: String, msg: String, tr: Throwable?) {
@@ -42,15 +50,19 @@ class Log {
         }
 
         fun i(tag: String, msg: String) {
-            v(tag, msg, null)
+            i(tag, msg, null)
         }
 
-        fun w(tag: String, msg: String, tr: Throwable?) {
-            println(VERBOSE, tag, msg, tr)
+        fun w(tag: String, msg: String?, tr: Throwable?) {
+            println(WARN, tag, msg, tr)
         }
 
         fun w(tag: String, msg: String) {
-            v(tag, msg, null)
+            w(tag, msg, null)
+        }
+
+        fun w(tag: String, tr: Throwable?) {
+            w(tag, null, tr)
         }
 
         fun e(tag: String, msg: String, tr: Throwable?) {

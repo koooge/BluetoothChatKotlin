@@ -13,7 +13,7 @@ import com.koooge.common.logger.MessageOnlyLogFilter
 
 class MainActivity : SampleActivityBase() {
     companion object {
-        const val TAG = "mainActivity"
+        const val TAG = "MainActivity"
     }
 
     private var mLogShown: Boolean = false;
@@ -27,17 +27,19 @@ class MainActivity : SampleActivityBase() {
             val transaction = getSupportFragmentManager().beginTransaction()
             val fragment = BluetoothChatFragment()
             transaction.replace(R.id.sample_content_fragment, fragment)
-            transaction.commit();
+            transaction.commit()
         }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        Log.d(TAG, "onCreateOptionsMenu")
         getMenuInflater().inflate(R.menu.main, menu)
         return true
     }
 
     override fun onPrepareOptionsMenu(menu: Menu): Boolean {
-        val logToggle = menu.findItem(R.id.menu_toggle_log)
+        Log.d(TAG, "onPrepareOptionsMenu")
+        val logToggle: MenuItem = menu.findItem(R.id.menu_toggle_log)
         logToggle.setVisible(findViewById<View>(R.id.sample_output) is ViewAnimator)
         logToggle.setTitle(if (mLogShown) R.string.sample_hide_log else R.string.sample_show_log)
 
