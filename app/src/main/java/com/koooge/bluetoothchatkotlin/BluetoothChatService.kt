@@ -40,7 +40,7 @@ class BluetoothChatService(context: Context, handler: Handler) {
 
     private @Synchronized fun updateUserInterfaceTitle() {
         mState = getState()
-        Log.d(TAG, "updateUsreInterfaceTitle() " + mNewState + " -> " + mState)
+        Log.d(TAG, "updateUserInterfaceTitle() " + mNewState + " -> " + mState)
         mNewState = mState
 
         mHandler.obtainMessage(Constants.MESSAGE_STATE_CHANGE, mNewState, -1).sendToTarget()

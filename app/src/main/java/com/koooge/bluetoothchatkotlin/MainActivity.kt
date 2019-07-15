@@ -57,7 +57,7 @@ class MainActivity : SampleActivityBase() {
                 } else {
                     output.setDisplayedChild(0)
                 }
-                supportInvalidateOptionsMenu()
+                invalidateOptionsMenu()
                 return true
             }
         }
