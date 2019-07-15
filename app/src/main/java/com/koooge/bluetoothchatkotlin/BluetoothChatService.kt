@@ -20,7 +20,7 @@ class BluetoothChatService(context: Context, handler: Handler) {
         const val NAME_SECURE = "BluetoothChatSecure"
         const val NAME_INSECURE = "BluetoothChatInsecure"
 
-        val MY_UUID_SECURE = UUID.fromString("fa87c0d0-afac-11de-8a39-0800200c9a66")
+        val MY_UUID_SECURE = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB" ) // fa87c0d0-afac-11de-8a39-0800200c9a66")
         val MY_UUID_INSECURE = UUID.fromString("8ce255c0-200a-11e0-ac64-0800200c9a66")
 
         const val STATE_NONE = 0
@@ -236,6 +236,8 @@ class BluetoothChatService(context: Context, handler: Handler) {
         constructor(device: BluetoothDevice, secure: Boolean) {
             mmDevice = device
             var tmp: BluetoothSocket? = null
+            mSocketType = if (secure) "Secure" else "Insecure"
+
             try {
                 if (secure) {
                     tmp = device.createRfcommSocketToServiceRecord(MY_UUID_SECURE)
