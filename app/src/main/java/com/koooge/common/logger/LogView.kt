@@ -12,10 +12,11 @@ class LogView : TextView, LogNode {
 
     constructor(context: Context, attrs: AttributeSet, defstyle: Int) : super(context, attrs, defstyle)
 
-    override fun println(priority: Int, tag: String, msg: String?, tr: Throwable?) {
+    override fun println(priority: Int, tag: String?, msg: String?, tr: Throwable?) {
         var priorityStr: String? = null
 
         when (priority) {
+
             android.util.Log.VERBOSE -> {
                 priorityStr = "VERBOSE"
             }

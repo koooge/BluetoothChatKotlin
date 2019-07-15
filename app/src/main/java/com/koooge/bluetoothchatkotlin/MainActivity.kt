@@ -20,6 +20,7 @@ class MainActivity : SampleActivityBase() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContentView(R.layout.activity_main)
 
         if (savedInstanceState == null) {
@@ -44,6 +45,7 @@ class MainActivity : SampleActivityBase() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        Log.d(TAG, "onOptionsItemSelected")
         when(item.getItemId()) {
             R.id.menu_toggle_log -> {
                 mLogShown = !mLogShown
@@ -70,6 +72,6 @@ class MainActivity : SampleActivityBase() {
         val logFragment: LogFragment = getSupportFragmentManager().findFragmentById(R.id.log_fragment) as LogFragment
         msgFilter.setNext(logFragment.getLogView()!!)
 
-        Log.i(this::class.java.simpleName, "Ready")
+        Log.i(TAG, "Ready")
     }
 }

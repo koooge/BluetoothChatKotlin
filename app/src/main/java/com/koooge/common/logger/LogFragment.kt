@@ -16,38 +16,38 @@ class LogFragment() : Fragment() {
     private var mLogView: LogView? = null
     private var mScrollView: ScrollView? = null
 
-    fun inflateViews(): View? {
+    fun inflateViews(): View {
         mScrollView = ScrollView(getActivity())
         val scrollParams = ViewGroup.LayoutParams(
             ViewGroup.LayoutParams.MATCH_PARENT,
             ViewGroup.LayoutParams.MATCH_PARENT)
         mScrollView?.setLayoutParams(scrollParams)
 
-        val mLogView = LogView(getActivity() as Context)
+        mLogView = LogView(getActivity() as Context)
         val logParams = ViewGroup.LayoutParams(scrollParams)
         logParams.height = ViewGroup.LayoutParams.WRAP_CONTENT
-        mLogView.setLayoutParams(logParams)
-        mLogView.setClickable(true)
-        mLogView.setFocusable(true)
-        mLogView.setTypeface(Typeface.MONOSPACE)
+        mLogView!!.setLayoutParams(logParams)
+        mLogView!!.setClickable(true)
+        mLogView!!.setFocusable(true)
+        mLogView!!.setTypeface(Typeface.MONOSPACE)
 
-        val paddingDips = 16
-        val scale = getResources().getDisplayMetrics().density
-        val paddingPixels: Int = ((paddingDips * scale) + .5) as Int
-        mLogView.setPadding(paddingPixels, paddingPixels, paddingPixels, paddingPixels)
-        mLogView.setCompoundDrawablePadding(paddingPixels)
+        val paddingDips: Int = 16
+        val scale: Double = (getResources().getDisplayMetrics().density).toDouble()
+        val paddingPixels: Int = ((paddingDips * scale) + .5).toInt()
+        mLogView!!.setPadding(paddingPixels, paddingPixels, paddingPixels, paddingPixels)
+        mLogView!!.setCompoundDrawablePadding(paddingPixels)
 
-        mLogView.setGravity(Gravity.BOTTOM)
-        mLogView.setTextAppearance(getActivity(), android.R.style.TextAppearance_Holo_Medium)
+        mLogView!!.setGravity(Gravity.BOTTOM)
+        mLogView!!.setTextAppearance(getActivity(), android.R.style.TextAppearance_Holo_Medium)
 
         mScrollView?.addView(mLogView)
-        return mScrollView
+        return mScrollView!!
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val result: View? = inflateViews()
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+        val result: View = inflateViews()
 
-        mLogView?.addTextChangedListener(object: TextWatcher {
+        mLogView!!.addTextChangedListener(object: TextWatcher {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
 
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}

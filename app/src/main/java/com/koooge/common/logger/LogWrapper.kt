@@ -13,7 +13,7 @@ class LogWrapper : LogNode {
         mNext = node
     }
 
-    override fun println(priority: Int, tag: String, msg: String?, tr: Throwable?) {
+    override fun println(priority: Int, tag: String?, msg: String?, tr: Throwable?) {
         val useMsg = if (msg == null) "" else msg
         val mMsg: String = if (tr != null) useMsg + "\n" + Log.getStackTraceString(tr) else useMsg
 
